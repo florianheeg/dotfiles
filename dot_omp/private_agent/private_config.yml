@@ -1,0 +1,8 @@
+modelRoles:
+  default: github-copilot/gpt-5.6-luna
+symbolPreset: nerd
+composer:
+  shape: band
+theme:
+  dark: titanium
+setupVersion: 2
