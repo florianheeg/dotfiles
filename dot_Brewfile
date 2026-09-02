@@ -1,0 +1,31 @@
+tap "anomalyco/tap"
+tap "can1357/tap"
+tap "stablyai/orca"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Fast and simple Node.js version manager
+brew "fnm"
+# GitHub command-line tool
+brew "gh"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Fast, disk space efficient package manager
+brew "pnpm"
+# Open agent skills ecosystem
+brew "skills"
+# UNIX shell (command interpreter)
+brew "zsh"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode", trusted: true
+# Coding agent with the IDE wired in
+brew "can1357/tap/omp", trusted: true
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# IDE for orchestrating AI coding agents across terminals and worktrees
+cask "stablyai/orca/orca", trusted: true
+# Team communication and collaboration software
+cask "slack"
+# Open-source code editor
+cask "visual-studio-code"
