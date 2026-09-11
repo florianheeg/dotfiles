@@ -1,0 +1,13 @@
+{
+  "name": "write-better-typescript",
+  "version": "0.2.0",
+  "type": "skill",
+  "summary": "Use when writing, reviewing, or refactoring TypeScript code; when handling external input from APIs, JSON, or third-party SDKs; when designing public APIs or utility functions; when improving compiler configuration or type-checking workflows.",
+  "delivery": "runtime",
+  "runtimes": ["opencode"],
+  "tokenProfile": "lazy",
+  "secrets": [],
+  "metadata": {
+    "recommendedModelBaseline": "Mid-tier frontier model or better; advisory, not enforced. Advanced type-level rules degrade on small/edge models."
+  }
+}
