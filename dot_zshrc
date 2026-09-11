@@ -1,0 +1,50 @@
+# General
+export COLORTERM=truecolor
+export EDITOR="nano"
+setopt AUTO_CD
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+HISTSIZE=50000
+SAVEHIST=50000
+
+# Homebrew
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
+
+# Zinit
+source "${HOMEBREW_PREFIX}/opt/zinit/zinit.zsh"
+zinit light zsh-users/zsh-completions
+autoload -Uz compinit
+compinit
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+
+# Starship
+eval "$(starship init zsh)"
+
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(fnm completions --shell zsh)"
+
+# skills.sh
+export DISABLE_TELEMETRY=1
+
+# Named directories
+source "$HOME/.config/zsh/named-dirs.zsh"
+
+# aliases
+source "$HOME/.config/zsh/aliases.zsh"
+
+# Audi-specific setup — see ~/.config/zsh/audi/README.md for offboarding steps
+[ -f "$HOME/.config/zsh/audi/bedrock.zsh" ] && source "$HOME/.config/zsh/audi/bedrock.zsh"
+
+# Mise
+eval "$(mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end

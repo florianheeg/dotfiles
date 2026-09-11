@@ -1,0 +1,47 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+scan_timeout = 30
+command_timeout = 500
+format = "$directory$all"
+right_format = "${custom.brew_updates}${custom.caffeine_status}$time"
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+
+[time]
+disabled = false
+format = "[$time](dimmed white)"
+time_format = "%H:%M"
+
+[cmd_duration]
+min_time = 1000
+format = "[took $duration](dimmed white)"
+
+[package]
+disabled = true
+
+[directory]
+
+[directory.substitutions]
+'~/.local/share/chezmoi' = '~dotfiles'
+'~/EDF/Privat' = '~private'
+'~/EDF/Audi/Arcade' = '~audi'
+
+[custom.brew_updates]
+description = "Shows pending Homebrew upgrades (read from cache, never slows the prompt)"
+command = "cat ~/.cache/brew-outdated-count"
+when = 'test -f ~/.cache/brew-outdated-count && [ "$(cat ~/.cache/brew-outdated-count)" != "0" ]'
+format = "[🍺 ↑$output]($style) "
+style = "yellow"
+shell = ["sh"]
+
+[custom.caffeine_status]
+description = "Shows caffeinate status (read from cache, never slows the prompt)"
+command = "cat ~/.cache/caffeine-state"
+when = 'test -f ~/.cache/caffeine-state && [ "$(cat ~/.cache/caffeine-state)" = "on" ]'
+format = "[☕]($style) "
+style = "green"
+shell = ["sh"]

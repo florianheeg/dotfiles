@@ -1,18 +1,77 @@
 tap "anomalyco/tap"
 tap "can1357/tap"
 tap "stablyai/orca"
+tap "tabbyml/tabby"
+# Generic-purpose lossless compression algorithm by Google
+brew "brotli"
+# AWS Cloud Development Kit - framework for defining AWS infra as code
+brew "aws-cdk"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Yet another cross-platform graphical process/system monitor
+brew "bottom"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Fast and simple Node.js version manager
 brew "fnm"
 # GitHub command-line tool
 brew "gh"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Prevents you from committing sensitive information to a git repo
+brew "git-secrets"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg@2.2"
+# Slightly more awesome Standard Unix Password Manager for Teams
+brew "gopass"
+# Command-line tool for managing and automating Grafana dashboards
+brew "grizzly"
+# Improved top (interactive process viewer)
+brew "htop"
+# Apache HTTP server
+brew "httpd"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: :changed
+# AI agent toolkit
+brew "pi-coding-agent"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
 # Fast, disk space efficient package manager
 brew "pnpm"
+# Tool for managing OCI containers and pods
+brew "podman"
+# RC file (dotfile) management
+brew "rcm"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Open agent skills ecosystem
 brew "skills"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Vulnerability scanner for container images, file systems, and Git repos
+brew "trivy"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Internet file retriever
+brew "wget"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
+brew "zellij"
+# Flexible and fast Zsh plugin manager
+brew "zinit"
 # UNIX shell (command interpreter)
 brew "zsh"
 # The AI coding agent built for the terminal.
@@ -21,11 +80,61 @@ brew "anomalyco/tap/opencode", trusted: true
 brew "can1357/tap/omp", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# Virtual monitor for screen sharing
+cask "deskpad"
+# Collaborative team software
+cask "figma"
+# Web browser
+cask "firefox"
+cask "font-fira-code"
+cask "font-fira-code-nerd-font"
+# Free and open-source image editor
+cask "gimp"
+# Web browser
+cask "google-chrome"
+# Desktop automation application
+cask "hammerspoon"
+# Speech to text application
+cask "handy"
+# GPU-based terminal emulator
+cask "kitty"
+# Clipboard manager
+cask "maccy"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# AI coding agent desktop client
+cask "opencode-desktop"
 # IDE for orchestrating AI coding agents across terminals and worktrees
 cask "stablyai/orca/orca", trusted: true
 # Team communication and collaboration software
 cask "slack"
 # Open-source code editor
 cask "visual-studio-code"
+vscode "aaron-bond.better-comments"
+vscode "alefragnani.bookmarks"
+vscode "alefragnani.project-manager"
+vscode "bierner.markdown-mermaid"
+vscode "dbaeumer.vscode-eslint"
+vscode "eamodio.gitlens"
+vscode "esbenp.prettier-vscode"
+vscode "github.github-vscode-theme"
+vscode "mkxml.vscode-filesize"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "oderwat.indent-rainbow"
+vscode "oxc.oxc-vscode"
+vscode "pkief.material-icon-theme"
+vscode "redhat.vscode-xml"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "styled-components.vscode-styled-components"
+vscode "vitest.explorer"
+vscode "wix.vscode-import-cost"
+vscode "yzhang.markdown-all-in-one"
+uv "awsume", with: ["setuptools"]
+uv "specify-cli", source: "git+https://github.com/github/spec-kit.git"
+uv "trafilatura"
+npm "corepack"
+npm "vercel"

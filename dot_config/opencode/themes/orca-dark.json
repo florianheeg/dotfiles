@@ -1,0 +1,87 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "bg": "#0a0a0a",
+    "panel": "#171717",
+    "element": "#262626",
+    "border": "#404040",
+    "borderActive": "#3794ff",
+    "borderSubtle": "#2b2b2b",
+
+    "fg": "#fafafa",
+    "muted": "#a1a1a1",
+
+    "blue": "#3794ff",
+    "cyan": "#40b0a6",
+    "green": "#86efac",
+    "yellow": "#fbbf24",
+    "orange": "#fb923c",
+    "red": "#ff6568",
+    "purple": "#b66dff",
+
+    "diffAddedBg": "#17261d",
+    "diffRemovedBg": "#2b1718",
+    "diffContextBg": "#0a0a0a",
+    "diffLineBgAdded": "#285c3a",
+    "diffLineBgRemoved": "#7f292b"
+  },
+  "theme": {
+    "primary": "blue",
+    "secondary": "element",
+    "accent": "blue",
+
+    "error": "red",
+    "warning": "orange",
+    "success": "green",
+    "info": "blue",
+
+    "text": "fg",
+    "textMuted": "muted",
+
+    "background": "bg",
+    "backgroundPanel": "panel",
+    "backgroundElement": "element",
+
+    "border": "border",
+    "borderActive": "borderActive",
+    "borderSubtle": "borderSubtle",
+
+    "diffAdded": "green",
+    "diffRemoved": "red",
+    "diffContext": "muted",
+    "diffHunkHeader": "blue",
+    "diffHighlightAdded": "green",
+    "diffHighlightRemoved": "red",
+    "diffAddedBg": "diffAddedBg",
+    "diffRemovedBg": "diffRemovedBg",
+    "diffContextBg": "diffContextBg",
+    "diffLineNumber": "muted",
+    "diffAddedLineNumberBg": "diffLineBgAdded",
+    "diffRemovedLineNumberBg": "diffLineBgRemoved",
+
+    "markdownText": "fg",
+    "markdownHeading": "blue",
+    "markdownLink": "blue",
+    "markdownLinkText": "cyan",
+    "markdownCode": "orange",
+    "markdownBlockQuote": "muted",
+    "markdownEmph": "purple",
+    "markdownStrong": "fg",
+    "markdownHorizontalRule": "border",
+    "markdownListItem": "blue",
+    "markdownListEnumeration": "blue",
+    "markdownImage": "purple",
+    "markdownImageText": "cyan",
+    "markdownCodeBlock": "fg",
+
+    "syntaxComment": "muted",
+    "syntaxKeyword": "purple",
+    "syntaxFunction": "blue",
+    "syntaxVariable": "fg",
+    "syntaxString": "cyan",
+    "syntaxNumber": "orange",
+    "syntaxType": "yellow",
+    "syntaxOperator": "purple",
+    "syntaxPunctuation": "muted"
+  }
+}

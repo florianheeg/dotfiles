@@ -1,0 +1,116 @@
+#!/bin/sh
+# Manages macOS caffeinate to control system sleep behavior.
+# Prevents idle sleep, display sleep, and disk sleep when active.
+
+CACHE_DIR="$HOME/.cache"
+PID_FILE="$CACHE_DIR/caffeinate.pid"
+STATE_FILE="$CACHE_DIR/caffeine-state"
+
+show_help() {
+  cat << 'EOF'
+Usage: caffeine [command]
+
+Commands:
+  start   - Keep Mac awake (prevent idle, display, and disk sleep) [default]
+  stop    - Allow Mac to sleep normally
+  status  - Show caffeinate status (true if running, false if not)
+  help    - Show this message
+
+Examples:
+  caffeine         # Start keeping Mac awake (default)
+  caffeine start   # Explicitly start caffeinate
+  caffeine stop    # Stop and allow sleep
+  caffeine status  # Check if caffeinate is active
+  decaf            # Alias for: caffeine stop
+EOF
+}
+
+caffeine_start() {
+  mkdir -p "$CACHE_DIR"
+  
+  # Check if caffeinate is already running
+  if [ -f "$PID_FILE" ]; then
+    existing_pid=$(cat "$PID_FILE")
+    if ps -p "$existing_pid" > /dev/null 2>&1; then
+      printf "☕ Caffeinate is already running (PID: %s)\n" "$existing_pid"
+      return 0
+    fi
+  fi
+  
+  # Start caffeinate with maximum awake settings:
+  # -d: prevent display sleep
+  # -i: prevent idle sleep
+  # -m: prevent disk sleep
+  # Run in background so the script returns immediately
+  caffeinate -d -i -m &
+  pid=$!
+  
+  # Save the PID and update state
+  printf '%s' "$pid" > "$PID_FILE"
+  printf '%s' "on" > "$STATE_FILE"
+  
+  printf "☕ Caffeinated! Your Mac will stay awake.\n"
+}
+
+caffeine_stop() {
+  # Check if PID file exists
+  if [ ! -f "$PID_FILE" ]; then
+    printf "No caffeinate process found.\n"
+    return 0
+  fi
+  
+  pid=$(cat "$PID_FILE")
+  
+  # Verify the process is actually running
+  if ! ps -p "$pid" > /dev/null 2>&1; then
+    printf "No caffeinate process found.\n"
+    rm -f "$PID_FILE"
+    printf '%s' "off" > "$STATE_FILE"
+    return 0
+  fi
+  
+  # Kill the caffeinate process
+  kill "$pid" 2>/dev/null
+  
+  # Remove PID file and update state
+  rm -f "$PID_FILE"
+  printf '%s' "off" > "$STATE_FILE"
+  
+  printf "☕ Decaffeinated! Your Mac can sleep again.\n"
+}
+
+caffeine_status() {
+  # Check if PID file exists and process is running
+  if [ -f "$PID_FILE" ]; then
+    pid=$(cat "$PID_FILE")
+    if ps -p "$pid" > /dev/null 2>&1; then
+      printf "true\n"
+      return 0
+    fi
+  fi
+  
+  printf "false\n"
+  return 1
+}
+
+# Main command dispatcher
+# Default to 'start' if no argument provided
+case "${1:-start}" in
+  start)
+    caffeine_start
+    ;;
+  stop)
+    caffeine_stop
+    ;;
+  status)
+    caffeine_status
+    ;;
+  help|--help|-h)
+    show_help
+    ;;
+  *)
+    printf "Error: Unknown command '%s'\n\n" "$1"
+    show_help
+    exit 1
+    ;;
+esac

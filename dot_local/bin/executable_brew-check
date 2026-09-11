@@ -1,0 +1,24 @@
+#!/bin/sh
+# Writes the count of outdated Homebrew packages to a cache file.
+# Read by Starship to show a hint in the right prompt without slowing it down.
+
+CACHE_DIR="$HOME/.cache"
+CACHE_FILE="$CACHE_DIR/brew-outdated-count"
+
+mkdir -p "$CACHE_DIR"
+
+# Locate brew — launchd runs with a minimal PATH and no HOMEBREW_PREFIX
+BREW="${HOMEBREW_PREFIX}/bin/brew"
+if [ ! -x "$BREW" ]; then
+  for p in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    [ -x "$p" ] && BREW="$p" && break
+  done
+fi
+
+if [ ! -x "$BREW" ]; then
+  printf '0' > "$CACHE_FILE"
+  exit 0
+fi
+
+count="$("$BREW" outdated --quiet 2>/dev/null | wc -l | tr -d ' ')"
+printf '%s' "${count:-0}" > "$CACHE_FILE"

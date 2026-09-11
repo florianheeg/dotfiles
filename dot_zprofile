@@ -1,0 +1,9 @@
+# Local binaries
+export PATH="$HOME/.local/bin:$PATH"
+
+# Audi-specific setup — see dot_config/zsh/audi/README.md for offboarding steps
+[ -f "$HOME/.config/zsh/audi/keychain.zsh" ] && source "$HOME/.config/zsh/audi/keychain.zsh"
+
+# Homebrew
+command -v brew >/dev/null 2>&1 || export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+command -v brew >/dev/null 2>&1 && eval "$(brew shellenv)"
