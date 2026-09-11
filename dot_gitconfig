@@ -1,8 +1,6 @@
 [user]
 	name = Florian Heeg
 	email = florian.heeg@accenture.com
-[includeIf "gitdir:~/EDF/Privat/"]
-	path = ~/.config/git/personal
 [include]
 	path = ~/.config/git/audi/maintenance.gitconfig
 [color]
@@ -32,3 +30,11 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+# Personal identity + GitHub credentials — must come after the [credential]
+# blocks above so its `helper =` resets take effect last (git accumulates
+# credential.helper entries in file order; a later empty reset clears
+# everything defined earlier for the same URL).
+[includeIf "gitdir:~/EDF/Privat/"]
+	path = ~/.config/git/personal
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+	path = ~/.config/git/personal
