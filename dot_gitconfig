@@ -30,10 +30,8 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
-# Personal identity + GitHub credentials — must come after the [credential]
-# blocks above so its `helper =` resets take effect last (git accumulates
-# credential.helper entries in file order; a later empty reset clears
-# everything defined earlier for the same URL).
+# Personal identity override for personal projects (see .zshrc for the
+# GH_TOKEN chpwd hook that handles gh/git credential selection).
 [includeIf "gitdir:~/EDF/Privat/"]
 	path = ~/.config/git/personal
 [includeIf "gitdir:~/.local/share/chezmoi/"]

@@ -20,6 +20,25 @@ periodic() {
 }
 periodic
 
+# Auto-select the personal GitHub account for git + gh CLI when inside a
+# personal-identity directory. Reads git's already-resolved user.email
+# (driven by .gitconfig's includeIf) rather than checking $PWD directly,
+# so it stays correct even inside a worktree checked out elsewhere.
+# GH_TOKEN is exported per-shell only — never touches the shared global
+# gh active-account state, so concurrent terminals on other topics are
+# unaffected.
+autoload -Uz add-zsh-hook
+_gh_token_for_dir() {
+  if git rev-parse --git-dir >/dev/null 2>&1 \
+    && [ "$(git config --get user.email 2>/dev/null)" = "florian.heeg@gmail.com" ]; then
+    export GH_TOKEN="$(gh auth token --user florianheeg 2>/dev/null)"
+  else
+    unset GH_TOKEN
+  fi
+}
+add-zsh-hook chpwd _gh_token_for_dir
+_gh_token_for_dir
+
 # Zinit
 source "${HOMEBREW_PREFIX}/opt/zinit/zinit.zsh"
 zinit light zsh-users/zsh-completions
