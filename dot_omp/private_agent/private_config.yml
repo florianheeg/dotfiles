@@ -8,11 +8,47 @@ modelRoles:
 
   task: anthropic/claude-sonnet-5:medium
 
-  smol: github-copilot/gpt-5.6-luna:low
-  tiny: github-copilot/gpt-5.6-luna-utility
-  commit: github-copilot/gpt-5.6-luna:low
+  smol: anthropic/claude-haiku-4-5:low
+  tiny: anthropic/claude-haiku-4-5:minimal
+  commit: anthropic/claude-haiku-4-5:low
 
   vision: anthropic/claude-sonnet-5:medium
+
+retry:
+  enabled: true
+  modelFallback: true
+  fallbackRevertPolicy: cooldown-expiry
+
+  fallbackChains:
+    default:
+      - github-copilot/gpt-5.6-terra:medium
+
+    plan:
+      - github-copilot/gpt-5.6-sol:high
+
+    task:
+      - github-copilot/gpt-5.6-terra:medium
+
+    slow:
+      - github-copilot/gpt-5.6-sol:high
+
+    advisor:
+      - github-copilot/gpt-5.6-sol:high
+
+    review:
+      - github-copilot/gpt-5.6-sol:high
+
+    smol:
+      - github-copilot/gpt-5.6-luna:low
+
+    tiny:
+      - github-copilot/gpt-5.6-luna-utility
+
+    commit:
+      - github-copilot/gpt-5.6-luna:low
+
+    vision:
+      - github-copilot/gpt-5.6-terra:medium
 
 cycleOrder:
   - smol
@@ -24,3 +60,6 @@ modelProviderOrder:
   - github-copilot
 
 setupVersion: 2
+
+dev:
+  autoqa: false
