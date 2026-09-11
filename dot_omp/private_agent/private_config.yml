@@ -14,6 +14,12 @@ modelRoles:
 
   vision: anthropic/claude-sonnet-5:medium
 
+task:
+  agentModelOverrides:
+    scout: "@smol"
+    sonic: "@smol"
+    task: "@task"
+
 retry:
   enabled: true
   modelFallback: true
