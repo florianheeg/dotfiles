@@ -12,3 +12,11 @@
 - Do not silently change requirements to fit an implementation.
 - Do not perform destructive Git operations without explicit approval.
 
+## Git commits
+
+- Prefer concise subject-only commit messages.
+- Use imperative mood.
+- Do not summarize the diff in the commit body.
+- Add a body only when it preserves non-obvious rationale, constraints, tradeoffs, or important behavioral consequences.
+- If the subject fully explains the change, omit the body.
+- Never include implementation inventories such as lists of files changed or tests added.
