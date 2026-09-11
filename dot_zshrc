@@ -11,6 +11,15 @@ SAVEHIST=50000
 # Homebrew
 export HOMEBREW_AUTO_UPDATE_SECS="86400"
 
+# Refresh the brew-outdated-count cache (read by starship) on shell start,
+# then every $PERIOD seconds while an interactive shell stays open — no
+# launchd/system daemon needed.
+PERIOD=21600 # 6 hours
+periodic() {
+  [ -x "$HOME/.local/bin/brew-check" ] && "$HOME/.local/bin/brew-check" &!
+}
+periodic
+
 # Zinit
 source "${HOMEBREW_PREFIX}/opt/zinit/zinit.zsh"
 zinit light zsh-users/zsh-completions
