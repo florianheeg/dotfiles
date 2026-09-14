@@ -1,6 +1,6 @@
 {
   "name": "write-better-typescript",
-  "version": "0.2.0",
+  "version": "0.5.1",
   "type": "skill",
   "summary": "Use when writing, reviewing, or refactoring TypeScript code; when handling external input from APIs, JSON, or third-party SDKs; when designing public APIs or utility functions; when improving compiler configuration or type-checking workflows.",
   "delivery": "runtime",
