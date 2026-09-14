@@ -15,8 +15,9 @@
 
 ## Delegation
 
-* Use `scout` for broad repository discovery: files, callers, tests, fixtures, and patterns.
-* Keep judgment, architecture, and correctness decisions with the primary model.
+* Delegate broad repository discovery to `scout`: locating files, callers, tests, fixtures, patterns, and related implementations.
+* Primary/review models should directly read only the evidence needed for reasoning, implementation, or verification.
+* Keep judgment, architecture, and correctness decisions with the primary/review model.
 
 ## Git
 
