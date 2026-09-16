@@ -67,5 +67,48 @@ modelProviderOrder:
 
 setupVersion: 2
 
+tools:
+  approval:
+    eval: prompt
+
+bash:
+  patterns:
+    - match: "git reset --hard*"
+      approval: prompt
+    - match: "git clean -f*"
+      approval: prompt
+    - match: "git restore *"
+      approval: prompt
+    - match: "git checkout -- *"
+      approval: prompt
+    - match: "git branch -D*"
+      approval: prompt
+    - match: "git stash drop*"
+      approval: prompt
+    - match: "git stash clear*"
+      approval: prompt
+    - match: "git push --force*"
+      approval: prompt
+    - match: "git push -f*"
+      approval: prompt
+    - match: "git push *+*"
+      approval: prompt
+    - match: "git push *--delete*"
+      approval: prompt
+    - match: "git filter-repo*"
+      approval: prompt
+    - match: "git filter-branch*"
+      approval: prompt
+    - match: "git reflog expire*"
+      approval: prompt
+    - match: "git gc *--prune=now*"
+      approval: prompt
+    - match: "git worktree remove *--force*"
+      approval: prompt
+    - match: "git rebase *"
+      approval: prompt
+    - match: "git *"
+      approval: allow
+
 dev:
   autoqa: false
