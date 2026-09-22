@@ -1,4 +1,4 @@
-tap "anomalyco/tap"
+tap "anomalyco/tap", trusted: { formulae: ["opencode-v2"] }
 tap "can1357/tap"
 tap "stablyai/orca"
 # Generic-purpose lossless compression algorithm by Google
@@ -70,7 +70,7 @@ brew "zinit"
 # UNIX shell (command interpreter)
 brew "zsh"
 # The AI coding agent built for the terminal.
-brew "anomalyco/tap/opencode", trusted: true
+brew "anomalyco/tap/opencode-v2", trusted: true
 # Coding agent with the IDE wired in
 brew "can1357/tap/omp", trusted: true
 # Password manager that keeps all passwords secure behind one password
@@ -89,6 +89,8 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 # Free and open-source image editor
 cask "gimp"
+# Native client for GitHub Copilot
+cask "github-copilot-app"
 # Web browser
 cask "google-chrome"
 # Desktop automation application
