@@ -1,4 +1,46 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["opencode-claude-auth@latest"]
+  "plugins": ["opencode-claude-auth@latest"],
+  "mcp": {
+    "servers": {
+      "bork": {
+        "type": "local",
+        "command": ["pnx", "@asg-song/bork-cli", "mcp"]
+      }
+    }
+  },
+  // Git guardrails: destructive operations require explicit approval
+  // Based on https://bork/tooling/git-guardrails-for-agents.md (adapted for OpenCode v2)
+  "permission": {
+    "bash": {
+      // Catch-all: require approval for unexpected commands
+      "*": "ask",
+      // Safe git operations auto-approved
+      "git *": "allow",
+      // Destructive git operations: must ask for approval
+      // Commands that discard or rewrite history
+      "git reset --hard*": "ask",
+      "git clean -f*": "ask",
+      "git restore *": "ask",
+      "git checkout -- *": "ask",
+      "git branch -D*": "ask",
+      "git stash drop*": "ask",
+      "git stash clear*": "ask",
+      // Force-push variants (rewrites shared history)
+      "git push --force*": "ask",
+      "git push -f*": "ask",
+      "git push *+*": "ask",
+      // Remote deletions
+      "git push *--delete*": "ask",
+      // History rewrites
+      "git filter-repo*": "ask",
+      "git filter-branch*": "ask",
+      "git reflog expire*": "ask",
+      "git gc *--prune=now*": "ask",
+      // Worktree cleanup
+      "git worktree remove *--force*": "ask",
+      // Interactive rebase (often leads to force-push)
+      "git rebase *": "ask"
+    }
+  }
 }
