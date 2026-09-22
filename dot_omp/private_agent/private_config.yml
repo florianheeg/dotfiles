@@ -65,12 +65,6 @@ modelProviderOrder:
   - anthropic
   - github-copilot
 
-setupVersion: 2
-
-tools:
-  approval:
-    eval: prompt
-
 bash:
   patterns:
     - match: "git reset --hard*"
@@ -112,3 +106,5 @@ bash:
 
 dev:
   autoqa: false
+
+setupVersion: 2
