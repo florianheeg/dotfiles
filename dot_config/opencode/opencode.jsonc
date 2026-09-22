@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["opencode-claude-auth@latest"],
+  "plugins": ["opencode-claude-auth-v2@latest"],
   "mcp": {
     "servers": {
       "bork": {
