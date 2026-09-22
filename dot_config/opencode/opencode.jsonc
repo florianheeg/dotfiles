@@ -9,40 +9,42 @@
       }
     }
   },
-  // Git guardrails: destructive operations require explicit approval
-  // Based on https://bork/tooling/git-guardrails-for-agents.md (adapted for OpenCode v2)
-  /*
-  "permission": {
-    "bash": {
-      // Catch-all: require approval for unexpected commands
-      "*": "ask",
-      // Safe git operations auto-approved
-      "git *": "allow",
-      // Destructive git operations: must ask for approval
-      // Commands that discard or rewrite history
-      "git reset --hard*": "ask",
-      "git clean -f*": "ask",
-      "git restore *": "ask",
-      "git checkout -- *": "ask",
-      "git branch -D*": "ask",
-      "git stash drop*": "ask",
-      "git stash clear*": "ask",
-      // Force-push variants (rewrites shared history)
-      "git push --force*": "ask",
-      "git push -f*": "ask",
-      "git push *+*": "ask",
-      // Remote deletions
-      "git push *--delete*": "ask",
-      // History rewrites
-      "git filter-repo*": "ask",
-      "git filter-branch*": "ask",
-      "git reflog expire*": "ask",
-      "git gc *--prune=now*": "ask",
-      // Worktree cleanup
-      "git worktree remove *--force*": "ask",
-      // Interactive rebase (often leads to force-push)
-      "git rebase *": "ask"
-    }
-  }
-  */
+  // Permissions: control agent actions
+  // Reference: https://opencode.ai/v2/docs/permissions/
+  "permissions": [
+    // Catch-all: ask before running shell commands
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    
+    // Safe git operations: auto-approve read-only operations
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "git log *", "effect": "allow" },
+    { "action": "shell", "resource": "git show *", "effect": "allow" },
+    { "action": "shell", "resource": "git branch *", "effect": "allow" },
+    { "action": "shell", "resource": "git tag *", "effect": "allow" },
+    
+    // Common write operations: auto-approve
+    { "action": "shell", "resource": "git add *", "effect": "allow" },
+    { "action": "shell", "resource": "git commit *", "effect": "allow" },
+    { "action": "shell", "resource": "git checkout *", "effect": "allow" },
+    { "action": "shell", "resource": "git merge *", "effect": "allow" },
+    { "action": "shell", "resource": "git pull *", "effect": "allow" },
+    
+    // Destructive operations: always ask for approval
+    { "action": "shell", "resource": "git reset *", "effect": "ask" },
+    { "action": "shell", "resource": "git clean *", "effect": "ask" },
+    { "action": "shell", "resource": "git restore *", "effect": "ask" },
+    { "action": "shell", "resource": "git branch -D *", "effect": "ask" },
+    { "action": "shell", "resource": "git stash drop *", "effect": "ask" },
+    { "action": "shell", "resource": "git stash clear *", "effect": "ask" },
+    
+    // Force-push: always deny (dangerous!)
+    { "action": "shell", "resource": "git push --force *", "effect": "deny" },
+    { "action": "shell", "resource": "git push -f *", "effect": "deny" },
+    
+    // History rewrites: always ask for approval
+    { "action": "shell", "resource": "git rebase *", "effect": "ask" },
+    { "action": "shell", "resource": "git filter-repo *", "effect": "ask" },
+    { "action": "shell", "resource": "git filter-branch *", "effect": "ask" }
+  ]
 }
