@@ -3,7 +3,7 @@ modelRoles:
   plan: anthropic/claude-sonnet-5:high
 
   slow: anthropic/claude-opus-5:high
-  advisor: anthropic/claude-opus-5:high
+  advisor: anthropic/claude-sonnet-5:medium
   review: anthropic/claude-opus-5:high
 
   task: anthropic/claude-sonnet-5:medium
@@ -13,6 +13,15 @@ modelRoles:
   commit: anthropic/claude-haiku-4-5:low
 
   vision: anthropic/claude-sonnet-5:medium
+
+# money burner
+advisor:
+  enabled: true
+
+autolearn:
+  enabled: true
+  autoContinue: true
+  minToolCalls: 5
 
 task:
   agentModelOverrides:
